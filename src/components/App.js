@@ -7,16 +7,22 @@ const API = "http://localhost:3001/sushis";
 function App() {
   const [sushiArr, setSushiArr] = useState([])
   const [fourSushi, setFourSushi] = useState(0)
-  // console.log(sushiArr)
+  console.log(sushiArr)
 
   useEffect(() => {
     fetch(API)
     .then((r) => r.json())
-    .then(data => setSushiArr(data))
+    .then((data) => {
+    const updatedSushi = data.map((sushi) => {
+    return {...sushi, eaten: false}
+    })
+    setSushiArr(updatedSushi)
+    })
   }, [])
+  
 
   function handleNewSushi() {
-    console.log("More Sushi Button")
+    // console.log("More Sushi Button")
     setFourSushi((fourSushi) => (fourSushi + 4) % sushiArr.length)
     }
 
