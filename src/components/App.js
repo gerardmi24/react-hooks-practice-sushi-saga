@@ -6,6 +6,7 @@ const API = "http://localhost:3001/sushis";
 
 function App() {
   const [sushiArr, setSushiArr] = useState([])
+  const [fourSushi, setFourSushi] = useState(0)
   // console.log(sushiArr)
 
   useEffect(() => {
@@ -14,9 +15,16 @@ function App() {
     .then(data => setSushiArr(data))
   }, [])
 
+  function handleNewSushi() {
+    console.log("More Sushi Button")
+    setFourSushi((fourSushi) => (fourSushi + 4) % sushiArr.length)
+    }
+
+    const showSushi = sushiArr.slice(fourSushi, fourSushi + 4)
+
   return (
     <div className="app">
-      <SushiContainer sushiArr={sushiArr} />
+      <SushiContainer showSushi={showSushi} sushiArr={sushiArr} handleChangeSushi={handleNewSushi} />
       <Table />
     </div>
   );
