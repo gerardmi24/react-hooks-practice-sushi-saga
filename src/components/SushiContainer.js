@@ -2,10 +2,10 @@ import React from "react";
 import MoreButton from "./MoreButton";
 import Sushi from "./Sushi"
 
-function SushiContainer({ handleChangeSushi, showSushi }) {
+function SushiContainer({removeSushi, handleChangeSushi, showSushi }) {
 
   const renderSushi = (
-    showSushi.map((sushiEl) => <Sushi sushiEl={sushiEl} key={sushiEl.id} />)
+    showSushi.map((sushiEl) => <Sushi removeSushi={removeSushi} sushiEl={sushiEl} key={sushiEl.id} />)
   )
 
   return (
